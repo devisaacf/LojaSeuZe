@@ -46,7 +46,7 @@ CREATE TABLE `cadastro` (
 --
 
 INSERT INTO `cadastro` (`nome`, `cpf`, `email`, `genero`, `cep`, `numero`, `telefone`, `numero_cartao`, `codigo_cartao`, `senha`, `id_cadastro`) VALUES
-('teste', 12345678911, 'teste@gmail.com', 'Masculino', 12345678, 222, 47997070707, 1234567812341616, 385, 'vaidacerto', 1),
+('teste', 12345678911, 'teste@gmail.com', 'Masculino', 12345678, 222, 47997070707, 1234567812341616, 385, 'vaidacerto', 1);
 
 --
 -- Índices para tabelas despejadas
