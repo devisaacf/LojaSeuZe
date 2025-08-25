@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="icon" href="imagens/logo.png" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            font-family: 'Arial', sans-serif;
+
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+
+            height: 120vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+        .container {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            width: 80%;
+
+            height: 80%;
+
+        }
+        .form-container {
+
+            background-color: #fff;
+
+            padding: 40px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+            width: 60%;
+
+            max-width: 400%;
+
+            text-align: center;
+
+            transition: transform 0.3s ease-in-out;
+
+        }
+
+        h1 {
+
+            font-size: 36px;
+
+            margin-bottom: 20px;
+
+            color: #333;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+        }
+
+        .input-group {
+
+            margin-bottom: 20px;
+
+            position: relative;
+
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            border: 2px solid #ddd;
+
+            font-size: 16px;
+
+            margin-bottom: 10px;
+
+            outline: none;
+
+            transition: all 0.3s ease;
+
+        }
+
+        input:focus {
+
+            border-color: #4e73df;
+
+            box-shadow: 0 0 5px rgba(78, 115, 223, 0.6);
+
+        }
+
+        .btn-submit {
+
+            width: 100%;
+
+            padding: 15px;
+
+            background-color: #4e73df;
+
+            color: #fff;
+
+            font-size: 18px;
+
+            border-radius: 10px;
+
+            border: none;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+        }
+
+        .btn-submit:hover {
+
+            background-color: #2e59d9;
+
+        }
+
+        .redirect-link {
+
+            margin-top: 20px;
+
+            font-size: 14px;
+
+        }
+
+        .redirect-link a {
+
+            color: #4e73df;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+        }
+
+        .redirect-link a:hover {
+
+            text-decoration: underline;
+
+        }
+
+        .form-container {
+
+            transform: scale(0.9);
+
+            animation: zoomIn 0.6s forwards;
+
+        }
+
+        @keyframes zoomIn {
+
+            0% {
+
+                transform: scale(0.8);
+
+                opacity: 0;
+
+            }
+
+            100% {
+
+                transform: scale(1);
+
+                opacity: 1;
+
+            }
+
+        }
+
+        .voltar {
+
+            display: inline-block;
+
+            background-color: #fff;
+
+            padding: 20px 40px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+            transition: transform 0.3s ease-in-out;
+
+            color: black;
+
+            text-decoration: none;
+
+            position: absolute;
+
+            top: 20px;
+
+            left: 20px;
+
+        }
+
+        .voltar:hover {
+
+            transform: scale(1.05);
+
+        }
+
+        .eye-icon {
+
+            position: absolute;
+
+            right: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            cursor: pointer;
+
+        }
+        
+        .gender-options {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 30px;
+
+            margin-bottom: 20px;
+
+        }
+        .gender-option {
+
+            position: relative;
+
+            right: 33.5%;
+
+        }
+
+        .gender-option input[type="radio"] {
+
+            position: absolute;
+
+            opacity: 0;
+
+            width: 0;
+
+            height: 0;
+
+        }
+
+        .gender-label {
+
+            display: flex;
+
+            align-items: center;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            gap: 10px;
+
+        }
+
+        .gender-circle {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background-color: #f0f0f0;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            transition: all 0.3s ease;
+
+            border: 2px solid #ddd;
+
+        }
+
+        .gender-option input[type="radio"]:checked + .gender-label .gender-circle {
+
+            background-color: #4e73df;
+
+            border-color: #4e73df;
+
+            color: white;
+
+        }
+
+        .gender-option input[type="radio"]:checked + .gender-label .gender-circle i {
+
+            color: white;
+
+        }
+
+        .gender-circle i {
+
+            font-size: 18px;
+
+            color: #666;
+
+            transition: all 0.3s ease;
+
+        }
+
+        .gender-text {
+
+            font-size: 16px;
+
+            color: #555;
+
+            font-weight: 500;
+
+        }
+
+        .gender-option input[type="radio"]:checked + .gender-label .gender-text {
+
+            color: #4e73df;
+
+            font-weight: 600;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <a href="home.html" class="voltar">Voltar</a>
+
+    <div class="container">
+
+        <div class="form-container">
+
+            <h1>Cadastro</h1>
+
+            <form id="signup-form" action="recebe_cadastro.php" method="POST">
+
+                <div class="input-group">
+
+                    <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+
+                </div>
+                
+                <div class="input-group">
+
+                    <div class="gender-options">
+
+                        <div class="gender-option">
+
+                            <input type="radio" id="masculino" name="genero" value="Masculino" required>
+
+                            <label for="masculino" class="gender-label">
+
+                                <div class="gender-circle">
+
+                                    <i class="fas fa-mars"></i>
+
+                                </div>
+
+                                <span class="gender-text">Masculino</span>
+
+                            </label>
+
+                        </div>
+
+                        <div class="gender-option">
+
+                            <input type="radio" id="feminino" name="genero" value="Feminino" required>
+
+                            <label for="feminino" class="gender-label">
+
+                                <div class="gender-circle">
+
+                                    <i class="fas fa-venus"></i>
+
+                                </div>
+
+                                <span class="gender-text">Feminino</span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                
+                <div class="input-group">
+
+                    <input type="text" id="cep" name="cep" placeholder="CEP" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <input type="text" id="numero" name="numero" placeholder="Número da casa" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <input type="text" id="telefone" name="telefone" placeholder="Telefone" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <input type="text" id="numero-cartao" name="numero_cartao" placeholder="Nº do cartão" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <input type="text" id="codigo-cartao" name="codigo_cartao" placeholder="Código do cartão" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
+
+                    <i class="fas fa-eye eye-icon" id="togglePassword"></i>
+
+                </div>
+
+                <button type="submit" class="btn-submit">Cadastrar</button>
+
+            </form>
+
+            <p class="redirect-link">Já tem uma conta? <a href="login.html">Entre aqui</a></p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const togglePassword = document.getElementById('togglePassword');
+
+        const passwordField = document.getElementById('senha');
+
+        togglePassword.addEventListener('click', function () {
+
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+
+            passwordField.type = type;
+
+            this.classList.toggle('fa-eye-slash');
+
+        });
+
+    </script>
+
+</body>
+
+</html>

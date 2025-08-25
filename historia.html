@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História - Loja do Seu Zé</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-green: #0f0;
+            --neon-blue: #08f;
+            --neon-purple: #f0f;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --text-color: #f0f0f0;
+            --text-muted: #aaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 255, 0, 0.3), 0 0 20px rgba(0, 255, 0, 0.2);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.4), 0 0 40px rgba(0, 255, 0, 0.2);
+            }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--neon-green);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--neon-green);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--dark-bg) 70%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -10px;
+            left: 25%;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+        }
+
+        .history-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .history-item {
+            display: flex;
+            gap: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .history-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .history-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .history-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .history-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 255, 0, 0.1), rgba(0, 0, 255, 0.1));
+            z-index: 1;
+        }
+
+        .history-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .history-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .history-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .history-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--neon-green);
+        }
+
+        .history-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .founders {
+            background-color: var(--darker-bg);
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .founder-card {
+            background-color: rgba(15, 15, 15, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .founder-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .founder-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .founder-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .founder-card:hover .founder-image img {
+            transform: scale(1.1);
+        }
+
+        .founder-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .founder-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--neon-blue);
+        }
+
+        .founder-info p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .founder-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .founder-social a {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .founder-social a:hover {
+            color: var(--neon-green);
+            transform: translateY(-3px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--darker-bg);
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--neon-green);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .modal-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-title h2 {
+            font-size: 2rem;
+            color: var(--neon-blue);
+            margin-bottom: 5px;
+        }
+
+        .modal-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .modal-body h3 {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            margin: 20px 0 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .modal-body h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 20px;
+            background-color: var(--neon-green);
+        }
+
+        .modal-body p {
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-social a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--neon-green);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .neon-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background-color: var(--neon-green);
+            top: -150px;
+            right: -150px;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            background-color: var(--neon-blue);
+            bottom: -200px;
+            left: -200px;
+            animation: float 10s infinite ease-in-out reverse;
+        }
+
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            background-color: var(--neon-purple);
+            top: 50%;
+            left: 20%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .history-item, .history-item:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .modal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="neon-circle circle-1"></div>
+        <div class="neon-circle circle-2"></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Loja do Seu Zé</div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#historia">Nossa História</a></li>
+                        <li><a href="#fundadores">Fundadores</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="neon-circle circle-3"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Nossa História</h1>
+                <p>Conheça a jornada da Loja do Seu Zé, desde sua humilde origem até se tornar uma referência no mercado. Uma história de paixão, dedicação e inovação.</p>
+                <a href="#historia" class="btn">Explorar História</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="historia">
+        <div class="container">
+            <h2 class="section-title">Como Tudo Começou</h2>
+            <div class="history-content">
+                <div class="history-item">
+                    <div class="history-image">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Origem da Loja do Seu Zé">
+                    </div>
+                    <div class="history-text">
+                        <h3>As Origens Humildes</h3>
+                        <p>Em 2015, três jovens visionários - Daniel Brito, Mikael Pierre e Isaac Felipe - se uniram com um sonho em comum: criar uma loja que fosse mais que um simples comércio, mas um espaço de experiências memoráveis. A Loja do Seu Zé nasceu em uma pequena garagem, com apenas três prateleiras e produtos cuidadosamente selecionados. O nome "Seu Zé" foi uma homenagem ao avô de Daniel, um comerciante que inspirou os valores de honestidade e atendimento personalizado.</p>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-image">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Primeiros anos da loja">
+                    </div>
+                    <div class="history-text">
+                        <h3>Os Primeiros Desafios</h3>
+                        <p>Os primeiros anos foram de muito trabalho e aprendizado. Daniel, com sua visão estratégica, Mikael com seu talento para design e experiência do cliente, e Isaac com sua expertise em operações, complementavam-se perfeitamente. A loja começou a ganhar destaque pela qualidade dos produtos e pelo atendimento diferenciado. Em 2017, após dois anos de operação, conseguiram se mudar para um espaço comercial próprio, marcando o primeiro grande marco de crescimento.</p>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-image">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Expansão da loja">
+                    </div>
+                    <div class="history-text">
+                        <h3>A Grande Virada</h3>
+                        <p>Em 2019, a Loja do Seu Zé deu um salto estratégico ao adotar um modelo híbrido, combinando a experiência física com uma plataforma digital robusta. Essa decisão, liderada por Isaac, mostrou-se visionária quando a pandemia atingiu em 2020. Enquanto muitos negócios fechavam, a Loja do Seu Zé não apenas sobreviveu como cresceu 120% naquele ano, graças à infraestrutura digital já estabelecida e à lealdade dos clientes conquistada nos anos anteriores.</p>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-image">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Loja do Seu Zé hoje">
+                    </div>
+                    <div class="history-text">
+                        <h3>O Presente e o Futuro</h3>
+                        <p>Hoje, a Loja do Seu Zé possui 5 unidades físicas e atende todo o país através de seu e-commerce. A empresa mantém os valores originais de seus fundadores: qualidade inegociável, atendimento humanizado e inovação constante. Daniel, Mikael e Isaac continuam à frente do negócio, agora com uma equipe de mais de 100 colaboradores. O plano para os próximos anos inclui a expansão para outros estados e o lançamento de uma linha própria de produtos, sempre mantendo a essência que fez da Loja do Seu Zé um sucesso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section founders" id="fundadores">
+        <div class="container">
+            <h2 class="section-title">Nossos Fundadores</h2>
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="imagens/daniel.jpeg" alt="Daniel Brito">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Daniel Brito</h3>
+                        <p>CEO & Estrategista</p>
+                        <div class="founder-social">
+                            <a href="https://www.linkedin.com/in/daniel-marques-277404323/"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/DevDanielBrito"><i class="fab fa-github"></i></a>
+                            <a href="https://www.instagram.com/daniel_b._sw/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <button class="btn view-profile" data-founder="daniel">Ver Perfil</button>
+                    </div>
+                </div>
+
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="imagens/mikael.jpeg" alt="Mikael Pierre">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Mikael Pierre</h3>
+                        <p>Diretor Criativo</p>
+                        <div class="founder-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <button class="btn view-profile" data-founder="mikael">Ver Perfil</button>
+                    </div>
+                </div>
+
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="imagens/isaac.jpeg" alt="Isaac Felipe">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Isaac Felipe</h3>
+                        <p>Diretor de Operações</p>
+                        <div class="founder-social">
+                            <a href="https://www.linkedin.com/in/isaac-felipe-alves-644229230/"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/devisaacf"><i class="fab fa-github"></i></a>
+                            <a href="https://www.instagram.com/isaac.felipe03/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <button class="btn view-profile" data-founder="isaac">Ver Perfil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="founderModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-image">
+                    <img id="modalFounderImage" src="" alt="Foto do Fundador">
+                </div>
+                <div class="modal-title">
+                    <h2 id="modalFounderName"></h2>
+                    <p id="modalFounderPosition"></p>
+                </div>
+            </div>
+            <div class="modal-body" id="modalFounderContent">
+                <!-- Conteúdo será preenchido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Loja do Seu Zé</div>
+                <div class="footer-links">
+                    <a href="#inicio">Início</a>
+                    <a href="#historia">Nossa História</a>
+                    <a href="#fundadores">Fundadores</a>
+                    <a href="#">Produtos</a>
+                    <a href="#">Contato</a>
+                </div>
+                <div class="footer-social">
+                    <a href="http://localhost:9999/lojaze/Loja_do_seu_Z%C3%A9.html"><i class="fab fa-facebook"></i></a>
+                    <a href="http://localhost:9999/lojaze/Loja_do_seu_Z%C3%A9.html"><i class="fab fa-instagram"></i></a>
+                    <a href="http://localhost:9999/lojaze/Loja_do_seu_Z%C3%A9.html"><i class="fab fa-github"></i></a>
+                    <a href="http://localhost:9999/lojaze/Loja_do_seu_Z%C3%A9.html"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="copyright">© 2024 Loja do Seu Zé. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animações de scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.history-item, .founder-card').forEach(item => {
+                observer.observe(item);
+            });
+
+            // Modal dos fundadores
+            const founderData = {
+                daniel: {
+                    name: "Daniel Brito",
+                    position: "CEO & Estrategista",
+                    image: "imagens/daniel.jpeg",
+                    content: `
+                        <p>Daniel Brito é o visionário por trás da estratégia de crescimento da Loja do Seu Zé. Com formação em Administração de Empresas e MBA em Gestão Estratégica, Daniel trouxe para o negócio sua expertise em planejamento e expansão de mercado.</p>
+                        
+                        <h3>Trajetória</h3>
+                        <p>Antes de fundar a Loja do Seu Zé, Daniel trabalhou por 5 anos em uma grande consultoria estratégica, onde desenvolveu habilidades analíticas e de tomada de decisão que foram fundamentais para o sucesso do negócio.</p>
+                        
+                        <h3>Contribuição</h3>
+                        <p>Foi Daniel quem idealizou o modelo híbrido de negócios que permitiu à loja prosperar mesmo durante períodos desafiadores. Sua capacidade de antever tendências e adaptar o negócio às mudanças do mercado tem sido um diferencial competitivo.</p>
+                        
+                        <h3>Filosofia</h3>
+                        <p>"Um negócio deve resolver problemas reais das pessoas. Quando focamos em criar valor genuíno, o sucesso é uma consequência natural."</p>
+                    `
+                },
+                mikael: {
+                    name: "Mikael Pierre",
+                    position: "Diretor Criativo",
+                    image: "imagens/mikael.jpeg",
+                    content: `
+                        <p>Mikael Pierre é o responsável pela identidade visual e experiência do cliente na Loja do Seu Zé. Formado em Design Gráfico com especialização em UX/UI, Mikael transformou a loja em um espaço memorável tanto físico quanto digital.</p>
+                        
+                        <h3>Trajetória</h3>
+                        <p>Antes de se juntar aos sócios, Mikael trabalhou como designer freelancer para diversas marcas, desenvolvendo um olhar aguçado para detalhes e uma compreensão profunda do que torna uma experiência de compra verdadeiramente especial.</p>
+                        
+                        <h3>Contribuição</h3>
+                        <p>Mikael foi o arquiteto por trás do design icônico das lojas físicas e da plataforma digital. Seu trabalho garantiu que a identidade da marca fosse consistente em todos os pontos de contato com o cliente.</p>
+                        
+                        <h3>Filosofia</h3>
+                        <p>"Design não é sobre como algo parece, mas sobre como funciona. Cada detalhe na Loja do Seu Zé foi pensado para criar uma conexão emocional com nossos clientes."</p>
+                    `
+                },
+                isaac: {
+                    name: "Isaac Felipe",
+                    position: "Diretor de Operações",
+                    image: "imagens/isaac.jpeg",
+                    content: `
+                        <p>Isaac Felipe é o responsável por garantir que todas as engrenagens da Loja do Seu Zé funcionem perfeitamente. Com formação em Engenharia de Produção e vasta experiência em logística, Isaac otimiza todos os processos do negócio.</p>
+                        
+                        <h3>Trajetória</h3>
+                        <p>Antes de se tornar sócio, Isaac trabalhou em uma grande empresa de logística, onde desenvolveu habilidades em gestão de cadeia de suprimentos e eficiência operacional que foram cruciais para escalar a Loja do Seu Zé.</p>
+                        
+                        <h3>Contribuição</h3>
+                        <p>Foi Isaac quem estruturou o sistema de distribuição e logística reversa que permite à loja oferecer prazos de entrega competitivos e um processo de trocas sem complicações, fatores que aumentaram significativamente a satisfação dos clientes.</p>
+                        
+                        <h3>Filosofia</h3>
+                        <p>"Operações excelentes são invisíveis. Quando tudo funciona perfeitamente, o cliente pode simplesmente desfrutar da experiência sem se preocupar com o que acontece nos bastidores."</p>
+                    `
+                }
+            };
+
+            const modal = document.getElementById('founderModal');
+            const closeModal = document.querySelector('.close-modal');
+            const viewProfileButtons = document.querySelectorAll('.view-profile');
+
+            viewProfileButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const founderId = this.getAttribute('data-founder');
+                    const founder = founderData[founderId];
+                    
+                    document.getElementById('modalFounderImage').src = founder.image;
+                    document.getElementById('modalFounderName').textContent = founder.name;
+                    document.getElementById('modalFounderPosition').textContent = founder.position;
+                    document.getElementById('modalFounderContent').innerHTML = founder.content;
+                    
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
