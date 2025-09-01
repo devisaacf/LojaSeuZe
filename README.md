@@ -8,17 +8,21 @@ Aqui tem alimentos frescos, bebidas geladinhas, guloseimas irresistíveis e muit
 Porque facilita o processo de compra do cliente, trazendo agilidade, eficiência ao consumidor e conforto. Isso atende necessidades como pessoas idosas que possuem dificuldades de locomoção, dentre outros.
 
 # Manual de instalação
-* 1- Instale todos os arquivos. OBS: Menos o arquivo "historia", ele esta em manutenção.
-  
-* 2- Após baixar, crie uma pasta com nome de sua preferência e jogue todos os arquivos la com a pasta imagens também.
-
-* 3- Abra o seu visual studio code, clique em *arquivo* na parte superior, ache a opção *abrir pasta* e procure a sua pasta, logo após abra ela.
+* 1 - Instale todos os arquivos. OBS: Menos o arquivo "historia.html, README.md".
+* 2 - Crie uma pasta chamada "lojaseuze".
+* 3 - Extraia a pasta "imagens.zip", após a pasta ser extraida clique nela e pegue a pasta que estará dentro, arraste a até a pasta "lojaseuze".
+* 4 - Após baixar os arquivos, coloque os arquivos dentro da pasta chamada "lojaseuze".
+* 5 - Recorte a pasta "lojaseuze"; abra o disco local, abra pasta "xampp", abra pasta "htdocs" e cole dentro dela a pasta "lojaseuze", o caminho ficará assim: C:\xampp\htdocs\lojaseuze.
+* 6 - Como deverá ficar sua pasta após esse processo, "lojaseuze" deve conter:  uma pasta "imagens" que clicando nela mostre as imagens,
+                                                                               Arquivos: cadastro,conexao, finaliza-compra, forma-de-pagamento, home, login, Loja_do_seu_Ze, lojaze.sql, processa_pagamento, recebe_cadastro, verifica_login
+"
+* 3- Abra o seu visual studio code, clique em *arquivo* na parte superior, ache a opção *abrir pasta* e procure a sua pasta(se encontrará no caminho C:\xampp\htdocs\lojaseuze), logo após abra ela.
 
 * 4- Abra o xampp do seu computador dê start no "Apache e no Mysql" OBS: Verifique a porta que seu Mysql entrega a você, caso ela seja diferente do arquivo "conexao.php" mude a porta no vscode.
 
 * 5- Ainda com o xampp clique em "admin" que ira estar na linha do mysql. Na URL adicione assim localhost:9999/phpmyadmin/.
 
-* 6- Clique em importar na parte superior do php e importe o arquivo "lojaze.sql".
+* 6- Clique em importar na parte superior do php e importe o arquivo "lojaze.sql" e clique em confirmar.
 
 # Manual de uso
 
