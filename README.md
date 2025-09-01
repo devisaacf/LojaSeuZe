@@ -26,6 +26,8 @@ Porque facilita o processo de compra do cliente, trazendo agilidade, eficiência
 
 # Manual de uso
 
+Ocorrerá erro caso o usuário finalize compra sem efetuar login ou cadastro.
+
 1 – Página inicial
 
 Ao entrar em nossa loja, o usuário se depara com a página principal, onde são destacados produtos de todas as categorias e seus itens relacionados. Também é exibido o carrinho de compras, caso o usuário queira visualizar os produtos selecionados e seus respectivos valores. Além disso, há opções de categorias específicas, uma barra de pesquisa para localizar itens diretamente e os botões para cadastrar-se ou fazer login.
