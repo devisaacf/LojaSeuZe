@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="icon" href="imagens/logo.png" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            font-family: 'Arial', sans-serif;
+
+            background: linear-gradient(135deg, #4e73df, #1cc88a); /* Gradiente de fundo */
+
+            height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+        .container {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            width: 100%;
+
+            height: 100%;
+
+        }
+
+        .form-container {
+
+            background-color: #fff;
+
+            padding: 40px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+            width: 100%;
+
+            max-width: 400px;
+
+            text-align: center;
+
+            transition: transform 0.3s ease-in-out;
+
+        }
+
+        h1 {
+
+            font-size: 36px;
+
+            margin-bottom: 20px;
+
+            color: #333;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+        }
+
+        .input-group {
+
+            margin-bottom: 20px;
+
+            position: relative;
+
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            border: 2px solid #ddd;
+
+            font-size: 16px;
+
+            margin-bottom: 10px;
+
+            outline: none;
+
+            transition: all 0.3s ease;
+
+        }
+
+        input:focus {
+
+            border-color: #4e73df;
+
+            box-shadow: 0 0 5px rgba(78, 115, 223, 0.6);
+
+        }
+
+        .btn-submit {
+
+            width: 100%;
+
+            padding: 15px;
+
+            background-color: #4e73df;
+
+            color: #fff;
+
+            font-size: 18px;
+
+            border-radius: 10px;
+
+            border: none;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+        }
+
+        .btn-submit:hover {
+
+            background-color: #2e59d9;
+
+        }
+
+        .redirect-link {
+
+            margin-top: 20px;
+
+            font-size: 14px;
+
+        }
+
+        .redirect-link a {
+
+            color: #4e73df;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+        }
+
+        .redirect-link a:hover {
+
+            text-decoration: underline;
+
+        }
+
+        .form-container {
+
+            transform: scale(0.9);
+
+            animation: zoomIn 0.6s forwards;
+
+        }
+
+        @keyframes zoomIn {
+
+            0% {
+
+                transform: scale(0.8);
+
+                opacity: 0;
+
+            }
+
+            100% {
+
+                transform: scale(1);
+
+                opacity: 1;
+
+            }
+
+        }
+
+        .voltar {
+
+            display: inline-block;
+
+            background-color: #fff;
+
+            padding: 20px 40px; 
+
+            border-radius: 12px;
+
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+            transition: transform 0.3s ease-in-out;
+
+            color: black;
+
+            text-decoration: none; 
+
+            position: absolute;
+
+            top: 20px;
+
+            left: 20px;
+
+        }
+
+        .voltar:hover {
+
+            transform: scale(1.05); 
+
+        }
+
+        .eye-icon {
+
+            position: absolute;
+
+            right: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            cursor: pointer;
+
+            color: #000000;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+    
+    <a href="home.html" class="voltar">Voltar</a>
+
+    <div class="container">
+
+        <div class="form-container">
+
+            <h1>Login</h1>
+
+            <form id="abapai" action="verifica_login.php" method="POST">
+
+                <div class="input-group">
+
+                    <input type="text" placeholder="Digite seu CPF" name="cpf" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <input type="password" placeholder="Digite sua senha" id="senha" name="senha" required>
+
+                    <i class="fas fa-eye eye-icon" id="togglePassword"></i>
+
+                </div>
+
+                <button type="submit" class="btn-submit">Entrar</button>
+
+            </form>
+
+            <p class="redirect-link">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const togglePassword = document.getElementById('togglePassword');
+
+        const passwordField = document.getElementById('senha');
+
+        togglePassword.addEventListener('click', function () {
+
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+
+            passwordField.setAttribute('type', type);
+            
+            this.classList.toggle('fa-eye-slash');
+
+        });
+
+    </script>
+
+</body>
+
+</html>
