@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `cadastro`
 --
 
-CREATE TABLE lojaze;
+CREATE DATABASE lojaze;
 USE lojaze;
 
 CREATE TABLE `cadastro` (
